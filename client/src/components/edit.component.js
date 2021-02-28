@@ -68,7 +68,7 @@ onSubmit(e){
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
           <label>Shop Location From: </label>
-          <select ref="shopLocationInput"
+          <select
               required
               className="form-control"
               value={this.state.shopLocation}
@@ -83,7 +83,7 @@ onSubmit(e){
           </select>
 
           <label>Shop Location To: </label>
-          <select ref="shopLocationToInput"
+          <select
               required
               className="form-control"
               value={this.state.shopLocationDestination}

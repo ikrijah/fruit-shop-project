@@ -62,7 +62,7 @@ onSubmit(e){
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
           <label>Shop Location where to add or remove fruits (you can use negative numbers): </label>
-          <select ref="shopLocationInput"
+          <select 
               required
               className="form-control"
               value={this.state.shopLocation}
