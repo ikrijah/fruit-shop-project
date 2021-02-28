@@ -57,7 +57,7 @@ onSubmit(e){
 
     console.log(JSON.stringify(post));
 
-    axios.post('http://localhost:5000/api/v1/edit' ,post) 
+    axios.post('https://fruit-shop-project.herokuapp.com/api/v1/edit' ,post) 
       .then(res => console.log(res.data));
 }
 

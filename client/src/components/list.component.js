@@ -12,7 +12,7 @@ export default class List extends Component {
 
 
   componentDidMount(){
-    axios.get('http://localhost:5000/api/v1/list') 
+    axios.get('https://fruit-shop-project.herokuapp.com/api/v1/list') 
       .then(res => this.setState({tableaux:res.data}))
       .catch((error)=>{
         console.log(error);
