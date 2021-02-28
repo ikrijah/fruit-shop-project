@@ -29,7 +29,7 @@ class App extends Component {
         <div className="container">
           <Navbar />
           <br/>
-          <Route path="/" exact component={List} />
+          <Route path="/list" exact component={List} />
           <Route path="/add" component={AddRemove} />
           <Route path="/edit" component={Edit} />
           
