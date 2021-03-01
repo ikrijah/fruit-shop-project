@@ -12,6 +12,7 @@ export default class AddDelete extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     
         this.state={
+            queryresult :'',
             shopLocation :'',
             stock:{
               orange: 0,
@@ -50,14 +51,15 @@ onSubmit(e){
     console.log(JSON.stringify(post));
 
     axios.post('https://fruit-shop-project.herokuapp.com/api/v1/add' ,post) 
-      .then(res => console.log(res.data));
+      .then(res => {console.log(res.data);
+        this.setState({queryresult:res.data.message})});
 }
 
 
   render() {
     return (
 
-        <div>
+      <div>
             <h3>Transfer de fruits </h3>
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
@@ -113,10 +115,11 @@ onSubmit(e){
         <div className="form-group">
           <input type="submit" value="Send" className="btn btn-primary" />
         </div>
-      </form>
+         </form>
 
-
-        </div>
+         <div>{this.state.queryresult}</div>
+         
+      </div>
     )
   }
 }

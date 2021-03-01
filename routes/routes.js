@@ -83,15 +83,21 @@ try {
           const options2 = { upsert: true };
           coll2.updateOne(query2, update2, options2);
   
+          
         });
+        var messageString = "La requête a bien été lancée : les données des stocks de  "+req.body.shopLocation+ " et de "+ req.body.shopLocationDestination+ " ont bien été mis à jour.";
+        res.json({message:messageString});
+      }else{
+
+        res.json({message:"Vous demandez de retirer un nombre trop important de fruits par rapport à ce qu'il y a en stock. Votre requête n'a pas été envoyée. Veuillez réessayer."})
+
       }
+
     });
 
   });
 
-    
-
-  res.json({message:"good to go"});
+  
   }catch (err) {
   throw new Error('Unable to Connect to Database')
   };
@@ -116,6 +122,7 @@ router.post('/add', async(req,res)=>{
         var fraiseDest = Number(docs.stock.fraise) + Number(req.body.stock.fraise);
         var ceriseDest = Number(docs.stock.cerise) + Number(req.body.stock.cerise);
 
+        if (orangeDest>=0 && bananeDest>=0 && pommeDest>=0 && fraiseDest>=0 && ceriseDest>=0 ){
         console.log("orange destination "+ orangeDest);
         const coll = client.db("myDatabase").collection("fruits");
         const query = { shopLocation:req.body.shopLocation};
@@ -132,10 +139,14 @@ router.post('/add', async(req,res)=>{
         const options = { upsert: true };
         coll.updateOne(query, update, options);
 
+        res.json({message:"Ajout ou retrait de stock réussi."});
+        }else{
+          res.json({message:"Vous demandez de retirer un nombre trop important de fruits par rapport à ce qu'il y a en stock. Votre requête n'a pas été envoyée. Veuillez réessayer."})
+        }
       });
-
+  
     });
-  res.json({message:"added or removed stocks successfully"});
+  
   }catch(err){
     res.json({message:err});
   }

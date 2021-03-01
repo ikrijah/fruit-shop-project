@@ -14,6 +14,7 @@ constructor(props){
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state={
+        queryresult:'',
         shopLocation :'',
         shopLocationDestination :'',
         stock:{
@@ -58,7 +59,8 @@ onSubmit(e){
     console.log(JSON.stringify(post));
 
     axios.post('https://fruit-shop-project.herokuapp.com/api/v1/edit' ,post) 
-      .then(res => console.log(res.data));
+      .then(res => {console.log(res.data);
+        this.setState({queryresult:res.data.message})});
 }
 
   render() {
@@ -135,6 +137,8 @@ onSubmit(e){
           <input type="submit" value="Send" className="btn btn-primary" />
         </div>
       </form>
+
+      <div>{this.state.queryresult}</div>
 
     </div>
     
