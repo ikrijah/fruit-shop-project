@@ -7,11 +7,13 @@ export default class List extends Component {
 
   constructor(props){
     super(props);
+    // Tableau des documents de la bdd
     this.state={tableaux:[]};
   }
 
 
   componentDidMount(){
+    // Requête vers le routeur /list afin de récupérer la liste des documents dans la bdd
     axios.get('https://fruit-shop-project.herokuapp.com/api/v1/list') 
       .then(res => this.setState({tableaux:res.data}))
       .catch((error)=>{
@@ -19,13 +21,14 @@ export default class List extends Component {
       })
   }
 
-
+// Affichage des rows pour le tableau
   tableList(fruit){
     return this.state.tableaux.map(currentTable =>{
       return <Tableau fruit={fruit} tableau={currentTable} key={currentTable._id}></Tableau>
     })
   }
 
+// Affichage des headers
   tableHeader(){
     return this.state.tableaux.map(currentTable =>{
       return <Header tableau={currentTable} key={currentTable._id}></Header>

@@ -37,6 +37,7 @@ onChangeNumber(event){
 onSubmit(e){
     e.preventDefault();
 
+    // objet initialisé avec les données passées en input
     const post = {
       shopLocation: this.state.shopLocation,
       stock:{
@@ -50,6 +51,8 @@ onSubmit(e){
 
     console.log(JSON.stringify(post));
 
+
+    // Connection au routeur /add afin d'ajouter ou de retirer des stocks de fruits dans la base de donnée
     axios.post('https://fruit-shop-project.herokuapp.com/api/v1/add' ,post) 
       .then(res => {console.log(res.data);
         this.setState({queryresult:res.data.message})});
@@ -118,7 +121,7 @@ onSubmit(e){
          </form>
 
          <div>{this.state.queryresult}</div>
-         
+
       </div>
     )
   }
